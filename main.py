@@ -9,13 +9,20 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
     fps = pygame.time.Clock()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    updatable = pygame.sprite.Group(player)
+    drawble = pygame.sprite.Group(player)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        player.update(dt)
         screen.fill(0)
-        player.draw(screen)
+        
+        for item in updatable:
+            item.update(dt)
+        
+        for item in drawble:
+            item.draw(screen)
+        
         pygame.display.flip()
         dt = fps.tick(60) / 1000
 
