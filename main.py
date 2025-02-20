@@ -35,7 +35,14 @@ def main():
             item.draw(screen)
         
         pygame.display.flip()
+        
+        for item in asteroids:
+            if player.crush(item):
+                print("Game over!")
+                quit()
+        
         dt = fps.tick(60) / 1000
+
 
 
 if __name__ == "__main__":
